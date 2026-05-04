@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Belle, what makes you whole. v4</title>
+<meta name="description" content="Cosmetologist and licensed extension specialist in Albuquerque, New Mexico. Skill and care, without conditions, for everyone who sits down." />
+
+<!--
+  ════════════════════════════════════════════════════════════════════
+  belle.co.beauty, preview v2 (the brainstorm sketch, not the build)
+  ────────────────────────────────────────────────────────────────────
+  Sections, in order:
+    1. Hero (light)
+    2. The Craft (dark olive, editorial grid)
+    3. The Consult (light cream, mocked inspo flow)
+    4. The Why (garnet)
+    5. The Science (light)
+    6. The Training (garnet)
+    7. A little about me, off the chair (light warm)
+    8. How the care comes back (cream invitation card on dark olive)
+    9. The System (dark olive teaser strip)
+   10. Footer
+  ────────────────────────────────────────────────────────────────────
+  Voice rules locked for the build:
+    No em-dashes anywhere on the site.
+    Long, flowing sentences. No clipped three-word punches.
+    First person, warm, never transactional.
+  Image slots are placeholders. Drop real photos into /photos/01.jpg etc.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,30..100;1,9..144,300..500,30..100&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300..500&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          brand: ['"Cormorant Garamond"', 'serif'],
+          sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          bone:        '#F4E8C8',
+          cream:       '#F4E8C8',
+          'cream-2':   '#F4E8C8',
+          header:      '#EDDCB5',
+          parchment:   '#CDB880',
+          stone:       '#CAC7B5',
+          bark:        '#9F9A8E',
+          'bark-warm': '#8D887D',
+          'bark-pale': '#B8B2A7',
+          olive:       '#1f231a',
+          'olive-2':   '#161A10',
+          'olive-mid': '#3B3C23',
+          charcoal:    '#1A1A1A',
+          mute:        '#5C564E',
+          garnet:      '#440606',
+          'garnet-2':  '#5C0B0B',
+          brass:       '#C4AB70',
+          'brass-w':   '#D0BA82',
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; color: #1f231a; background: #F4E8C8; }
+
+  .font-display { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144, 'SOFT' 50; }
+  .font-display-italic { font-family: 'Fraunces', serif; font-style: italic; font-variation-settings: 'opsz' 144, 'SOFT' 100; }
+  .font-brand-italic { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+
+  ::selection { background: #440606; color: #F1EFE0; }
+
+  .label {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11px; line-height: 1;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    font-weight: 500; color: #5C564E;
+  }
+
+  .hairline       { height: 1px; background: rgba(31,35,26,0.18); border: 0; }
+  .hairline-soft  { height: 1px; background: rgba(31,35,26,0.10); border: 0; }
+  .hairline-cream { height: 1px; background: rgba(241,239,224,0.18); border: 0; }
+  .hairline-brass { height: 1px; background: rgba(196,171,112,0.40); border: 0; }
+
+  .placeholder {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(60% 50% at 30% 22%, rgba(196,171,112,0.18), transparent 70%),
+      radial-gradient(70% 60% at 78% 82%, rgba(68,6,6,0.20), transparent 70%),
+      linear-gradient(180deg, #2A2E22 0%, #161A10 100%);
+  }
+  .placeholder::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(241,239,224,0.06) 1px, transparent 1px);
+    background-size: 4px 4px; pointer-events: none;
+  }
+  .placeholder.alt {
+    background:
+      radial-gradient(60% 50% at 70% 30%, rgba(143,173,200,0.16), transparent 70%),
+      radial-gradient(70% 60% at 30% 75%, rgba(196,171,112,0.16), transparent 70%),
+      linear-gradient(180deg, #3B3C23 0%, #1f231a 100%);
+  }
+  .placeholder.warm {
+    background:
+      radial-gradient(60% 50% at 40% 30%, rgba(208,186,130,0.22), transparent 70%),
+      radial-gradient(70% 60% at 80% 80%, rgba(117,18,18,0.22), transparent 70%),
+      linear-gradient(180deg, #2C2418 0%, #1A1410 100%);
+  }
+  .placeholder.cool {
+    background:
+      radial-gradient(60% 50% at 50% 25%, rgba(202,199,181,0.16), transparent 70%),
+      radial-gradient(70% 60% at 30% 80%, rgba(143,173,200,0.12), transparent 70%),
+      linear-gradient(180deg, #1F2825 0%, #131815 100%);
+  }
+  .placeholder.light {
+    background:
+      radial-gradient(60% 50% at 30% 22%, rgba(196,171,112,0.30), transparent 70%),
+      radial-gradient(70% 60% at 78% 82%, rgba(138,151,131,0.20), transparent 70%),
+      linear-gradient(180deg, #EAE3D2 0%, #CAC7B5 100%);
+  }
+  .placeholder.light::after { display: none; }
+  .placeholder.vivid {
+    background:
+      radial-gradient(55% 55% at 30% 25%, rgba(220, 95, 145, 0.34), transparent 70%),
+      radial-gradient(60% 60% at 75% 70%, rgba(125, 70, 185, 0.30), transparent 70%),
+      linear-gradient(180deg, #2A1822 0%, #161018 100%);
+  }
+  .placeholder.blonde {
+    background:
+      radial-gradient(60% 50% at 35% 30%, rgba(225, 200, 145, 0.32), transparent 70%),
+      radial-gradient(70% 60% at 78% 78%, rgba(196, 171, 112, 0.26), transparent 70%),
+      linear-gradient(180deg, #2C2520 0%, #1A1410 100%);
+  }
+  .placeholder.nails {
+    background:
+      radial-gradient(50% 55% at 25% 30%, rgba(196, 90, 140, 0.34), transparent 70%),
+      radial-gradient(55% 60% at 75% 25%, rgba(196, 171, 112, 0.30), transparent 70%),
+      radial-gradient(60% 50% at 55% 80%, rgba(220, 130, 80, 0.28), transparent 70%),
+      linear-gradient(180deg, #2A1F1A 0%, #16110D 100%);
+  }
+  .placeholder.nails-alt {
+    background:
+      radial-gradient(50% 50% at 30% 25%, rgba(150, 90, 160, 0.32), transparent 70%),
+      radial-gradient(60% 60% at 75% 75%, rgba(220, 90, 80, 0.30), transparent 70%),
+      radial-gradient(60% 50% at 50% 55%, rgba(200, 180, 80, 0.22), transparent 70%),
+      linear-gradient(180deg, #1F1815 0%, #110D0A 100%);
+  }
+
+  .caption-overlay {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 14px 16px;
+    background: linear-gradient(180deg, transparent 0%, rgba(15,17,10,0.7) 100%);
+    color: #F1EFE0;
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  .field {
+    width: 100%; background: transparent; border: 0;
+    border-bottom: 1px solid rgba(31,35,26,0.22);
+    padding: 14px 0;
+    font: 400 16px/1.5 'DM Sans', system-ui, sans-serif;
+    color: #1f231a; transition: border-color .25s ease;
+    border-radius: 0;
+  }
+  .field:focus { outline: 0; border-bottom-color: #440606; }
+  .field::placeholder { color: rgba(92,86,78,0.55); }
+  textarea.field { min-height: 96px; resize: vertical; padding-top: 14px; }
+
+  .pill input { position: absolute; opacity: 0; pointer-events: none; }
+  .pill label {
+    display: inline-block; padding: 10px 18px;
+    border: 1px solid rgba(31,35,26,0.22); border-radius: 999px;
+    font-size: 13px; cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+    color: #1f231a; user-select: none;
+  }
+  .pill label:hover { border-color: #1f231a; }
+  .pill input:checked + label { background: #440606; color: #F1EFE0; border-color: #440606; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #440606; color: #F1EFE0;
+    padding: 18px 28px;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    border-radius: 999px;
+    transition: background-color .25s ease;
+    font-weight: 500; border: 0; cursor: pointer;
+  }
+  .btn-primary:hover { background: #5C0B0B; }
+
+  .invite-card {
+    background: #F4E8C8;
+    border: 1px solid rgba(196,171,112,0.40);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25), 0 6px 12px rgba(0,0,0,0.15);
+    position: relative;
+  }
+  .invite-card::before {
+    content: ""; position: absolute; inset: 14px;
+    border: 1px solid rgba(196,171,112,0.35);
+    pointer-events: none;
+  }
+
+  .upload-tile {
+    border: 1.5px dashed rgba(31,35,26,0.30);
+    border-radius: 8px; background: rgba(241,239,224,0.45);
+    padding: 28px 20px;
+    transition: border-color .2s ease, background-color .2s ease;
+    cursor: pointer; text-align: center;
+  }
+  .upload-tile:hover { border-color: #440606; background: rgba(241,239,224,0.7); }
+  .upload-tile.dragging { border-color: #440606; background: rgba(196,171,112,0.18); }
+
+  .ai-card {
+    background: rgba(196,171,112,0.10);
+    border-left: 2px solid #C4AB70;
+    padding: 16px 18px; border-radius: 4px;
+  }
+  .ai-card .ai-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: #5C0B0B; font-weight: 500; }
+
+  @keyframes blink { 0%, 80%, 100% { opacity: 0.2 } 40% { opacity: 1 } }
+  .dot { display: inline-block; width: 6px; height: 6px; border-radius: 999px; background: #440606; margin: 0 2px; animation: blink 1.4s infinite both; }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  .stagger-1 { opacity: 0; transform: translateY(14px); animation: rise 1.1s .1s ease forwards; }
+  .stagger-2 { opacity: 0; transform: translateY(14px); animation: rise 1.1s .35s ease forwards; }
+  .stagger-3 { opacity: 0; transform: translateY(14px); animation: rise 1.1s .6s ease forwards; }
+  .stagger-4 { opacity: 0; transform: translateY(14px); animation: rise 1.1s .85s ease forwards; }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+  section { scroll-margin-top: 72px; }
+
+  /* Sticky tab nav */
+  .tab-link {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11px; line-height: 1;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 500;
+    color: #5C564E;
+    padding: 8px 10px;
+    border-bottom: 2px solid transparent;
+    transition: color .25s ease, border-color .25s ease;
+    text-decoration: none;
+  }
+  .tab-link:hover { color: #1f231a; }
+  .tab-link.is-active { color: #440606; border-bottom-color: #C4AB70; }
+
+  .tab-row {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 14px; padding: 14px 0;
+    border-bottom: 1px solid rgba(31,35,26,0.10);
+    color: #1f231a;
+    transition: color .2s ease;
+  }
+  .tab-row:hover { color: #440606; }
+  .tab-row.is-active { color: #440606; }
+  .tab-row:last-child { border-bottom: 0; }
+
+  /* Push hero down so it isn't covered by the fixed nav */
+  body { padding-top: 64px; }
+  @media (min-width: 768px) { body { padding-top: 60px; } }
+
+  /* Custom brass cursor */
+  @media (pointer: fine) {
+    *, *::before, *::after { cursor: none; }
+  }
+  .cursor-dot {
+    width: 8px; height: 8px;
+    background: #C4AB70;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    box-shadow: 0 0 14px rgba(196,171,112,0.45);
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    transition: width 0.18s ease, height 0.18s ease, background 0.18s ease, opacity 0.55s ease;
+    left: -100px; top: -100px;
+  }
+  .cursor-ring {
+    width: 34px; height: 34px;
+    border: 1.5px solid rgba(196,171,112,0.55);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, opacity 0.55s ease;
+    left: -100px; top: -100px;
+  }
+  .cursor-dot.hovering { width: 14px; height: 14px; background: #440606; box-shadow: 0 0 18px rgba(68,6,6,0.4); }
+  .cursor-ring.hovering { width: 52px; height: 52px; border-color: rgba(68,6,6,0.45); }
+  .cursor-dot.fading, .cursor-ring.fading { opacity: 0; }
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- STICKY TAB NAV (always visible, scrollspy active state) -->
+<header id="site-nav" class="fixed top-0 left-0 right-0 z-40 bg-header/95 backdrop-blur-md border-b border-charcoal/10">
+  <div class="px-6 sm:px-10 lg:px-12 flex items-center justify-between gap-4 py-4 sm:py-3">
+    <a href="#top" class="font-display text-[18px] sm:text-[20px] lg:text-[22px] tracking-tight leading-none text-charcoal shrink-0">
+      belle<span class="text-garnet">.</span>co<span class="text-garnet">.</span>beauty
+    </a>
+
+    <!-- Desktop tabs (hidden on small) -->
+    <nav class="hidden md:flex items-center gap-1 lg:gap-2 overflow-x-auto whitespace-nowrap" aria-label="Sections">
+      <a href="#craft"     class="tab-link" data-target="craft">Work</a>
+      <a href="#consult"   class="tab-link" data-target="consult">Consult</a>
+      <a href="#referrals" class="tab-link" data-target="referrals">Care, returning</a>
+      <a href="#why"       class="tab-link" data-target="why">Why</a>
+      <a href="#science"   class="tab-link" data-target="science">Hair</a>
+      <a href="#training"  class="tab-link" data-target="training">Training</a>
+      <a href="#personal"  class="tab-link" data-target="personal">About</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a href="https://instagram.com/belle.co.beauty" target="_blank" rel="noopener" class="label hidden lg:inline hover:text-garnet transition-colors">@belle.co.beauty</a>
+      <a href="#consult" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-garnet text-cream text-[12px] tracking-[0.22em] uppercase font-semibold hover:bg-garnet-2 transition-colors shadow-sm" style="color:#F4E8C8;">Begin a consult</a>
+      <button id="menu-btn" class="md:hidden p-2 -m-2" aria-label="Open menu" aria-expanded="false">
+        <span class="block w-6 h-px bg-charcoal mb-[5px]"></span>
+        <span class="block w-6 h-px bg-charcoal mb-[5px]"></span>
+        <span class="block w-4 h-px bg-charcoal"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu sheet -->
+  <div id="menu-sheet" class="md:hidden hidden border-t border-charcoal/10 bg-header">
+    <nav class="px-6 py-4 flex flex-col" aria-label="Sections, mobile">
+      <a href="#craft"     class="tab-row" data-target="craft">01. Work</a>
+      <a href="#consult"   class="tab-row" data-target="consult">02. Begin a consult</a>
+      <a href="#referrals" class="tab-row" data-target="referrals">03. How the care comes back</a>
+      <a href="#why"       class="tab-row" data-target="why">04. The why</a>
+      <a href="#science"   class="tab-row" data-target="science">05. Hair, considered</a>
+      <a href="#training"  class="tab-row" data-target="training">06. Where I'm trained</a>
+      <a href="#personal"  class="tab-row" data-target="personal">07. Off the chair</a>
+      <a href="https://instagram.com/belle.co.beauty" target="_blank" rel="noopener" class="tab-row">@belle.co.beauty</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 1. HERO -->
+<section id="top" class="relative bg-bone px-6 sm:px-10 lg:px-16 pt-16 sm:pt-24 lg:pt-32 pb-20 sm:pb-28 overflow-hidden">
+  <div class="grid grid-cols-12 gap-x-6 gap-y-12 items-end">
+    <div class="col-span-12 lg:col-span-7">
+      <div class="flex items-center gap-4 mb-12 sm:mb-16 stagger-1">
+        <span class="label">00, Belle, Albuquerque</span>
+        <span class="hairline-soft flex-1"></span>
+      </div>
+      <h1 class="font-display leading-[0.92] tracking-tight text-[18vw] sm:text-[14vw] lg:text-[10.5vw] xl:text-[9.5vw] text-charcoal">
+        <span class="block stagger-2">What</span>
+        <span class="block stagger-3">makes you</span>
+        <span class="block stagger-4 font-display-italic text-garnet">whole.</span>
+      </h1>
+      <p class="mt-12 max-w-xl text-mute text-[16px] sm:text-[17px] leading-[1.65] reveal">
+        I'm a cosmetologist working in Albuquerque, specializing in extensions, color, and the long arc of hair health. I'm building a chair where skill and care show up together for everyone who sits down. I hope to service clients of all types without conditions, rushing anyone out the door, or cutting corners on either side of the work.
+      </p>
+      <a href="#consult" class="inline-flex items-center gap-3 mt-12 group reveal">
+        <span class="label" style="color:#1f231a;">Begin a consult</span>
+        <span class="block w-10 h-px bg-charcoal group-hover:w-16 transition-all duration-500"></span>
+      </a>
+    </div>
+    <div class="col-span-12 lg:col-span-5 reveal">
+      <figure class="relative">
+        <div class="label mb-3 flex items-center justify-between">
+          <span>Plate 01</span>
+          <span>Studio, ABQ</span>
+        </div>
+        <div class="placeholder light w-full aspect-[4/5] rounded-[2px]"></div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 2. THE CRAFT -->
+<section id="craft" class="bg-olive text-cream px-6 sm:px-10 lg:px-16 py-24 sm:py-32 reveal">
+  <div class="flex items-center gap-4 mb-10">
+    <span class="label" style="color:#C4AB70;">01, The Craft</span>
+    <span class="hairline-cream flex-1"></span>
+  </div>
+  <h2 class="font-display text-[12vw] sm:text-[8vw] lg:text-[6.5vw] leading-[0.95] tracking-tight max-w-5xl">
+    The work, <span class="font-display-italic" style="color:#C4AB70;">laid out.</span>
+  </h2>
+  <p class="text-cream/70 mt-8 max-w-xl text-[16px] leading-[1.7]">
+    A small collection of work from my early book. Extensions and color are where most of my heart goes, custom nail art is my longest-standing craft, and cutting and tinsel sit alongside. More gets added as the book grows.
+  </p>
+
+  <div class="grid grid-cols-12 gap-3 sm:gap-4 mt-16">
+    <figure class="col-span-12 sm:col-span-7 row-span-2 placeholder aspect-[5/6]">
+      <figcaption class="caption-overlay">
+        <div class="label" style="color:#C4AB70;">Plate 01, Wefts</div>
+        <div class="font-display text-xl sm:text-2xl mt-1">Custom multi-pack install</div>
+      </figcaption>
+    </figure>
+    <figure class="col-span-7 sm:col-span-5 placeholder alt aspect-[4/3]">
+      <figcaption class="caption-overlay">
+        <div class="label" style="color:#C4AB70;">Plate 02, K-tips</div>
+      </figcaption>
+    </figure>
+    <figure class="col-span-5 placeholder warm aspect-[4/5]">
+      <figcaption class="caption-overlay">
+        <div class="label" style="color:#C4AB70;">Plate 03, Tape-ins</div>
+      </figcaption>
+    </figure>
+    <figure class="col-span-4 placeholder vivid aspect-[3/4]">
+      <figcaption class="caption-overlay">
+        <div class="label" style="color:#C4AB70;">Plate 04, Vivid color</div>
+      </figcaption>
+    </figure>
+    <figure class="col-span-8 placeholder aspect-[16/9]">
+      <figcaption class="caption-overlay">
+        <div class="label" style="color:#C4AB70;">Plate 05, Color correction with wefts</div>
+        <div class="font-display text-xl mt-1 max-w-xl">Six-hour reset for a complex case</div>
+      </figcaption>
+    </figure>
+    <figure class="col-span-6 placeholder blonde aspect-[1/1]">
+      <figcaption class="caption-overlay">
+        <div class="label" style="color:#C4AB70;">Plate 06, Bleach retouch</div>
+      </figcaption>
+    </figure>
+    <figure class="col-span-6 placeholder warm aspect-[1/1]">
+      <figcaption class="caption-overlay">
+        <div class="label" style="color:#C4AB70;">Plate 07, Maintenance, three months in</div>
+      </figcaption>
+    </figure>
+    <figure class="col-span-12 sm:col-span-6 placeholder nails aspect-[1/1]">
+      <figcaption class="caption-overlay">
+        <div class="label" style="color:#C4AB70;">Plate 08, Custom nail art</div>
+        <div class="font-display text-xl mt-1">Hand-painted, full themed set</div>
+      </figcaption>
+    </figure>
+    <figure class="col-span-12 sm:col-span-6 placeholder nails-alt aspect-[1/1]">
+      <figcaption class="caption-overlay">
+        <div class="label" style="color:#C4AB70;">Plate 09, Detail work</div>
+        <div class="font-display text-xl mt-1">Intricate, every nail its own piece</div>
+      </figcaption>
+    </figure>
+  </div>
+
+  <!-- Extension methods -->
+  <div class="mt-20 sm:mt-24">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="label" style="color:#C4AB70;">Extension methods</span>
+      <span class="hairline-cream flex-1"></span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-10">
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">Tape-ins</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Quick to install and light to wear, made for blending short layers and adding everyday density.
+        </p>
+      </article>
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">K-tips</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Heat-fusion bonds with near-invisible attachment, water-resistant for people who don't slow down for their hair.
+        </p>
+      </article>
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">I-tips</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Bead-and-strand installation, full movement, reusable hair, and a longer wear cycle for the long arc.
+        </p>
+      </article>
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">Wefts</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Sewn onto a beaded foundation. The fullest coverage and the most dramatic shift in length and density.
+        </p>
+      </article>
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">Tinsel</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Sparkle strands woven into your existing hair, low commitment and surprising joy, the easiest way to try something playful without the install of full extensions.
+        </p>
+      </article>
+    </div>
+  </div>
+
+  <!-- Color services -->
+  <div class="mt-16">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="label" style="color:#C4AB70;">Color services</span>
+      <span class="hairline-cream flex-1"></span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10">
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">Vivids</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Bold fashion color and dimensional fantasy palettes. The kind of work where natural isn't the goal and the whole point is intention.
+        </p>
+      </article>
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">Blonding</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Custom designed blonding, fit for every lifestyle and client, from bottle blondes and platinum to bleach retouches, dimensional blondes, and balayage. Real formulation behind every direction.
+        </p>
+      </article>
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">Color formulation</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Single-process classics, custom formulation for your specific hair, glosses, and corrective work when you need to undo what came before. Where the chemistry actually shows.
+        </p>
+      </article>
+    </div>
+  </div>
+
+  <!-- Cutting -->
+  <div class="mt-16">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="label" style="color:#C4AB70;">Cutting</span>
+      <span class="hairline-cream flex-1"></span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">Women's cuts</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Precision cutting built around how you actually wear your hair, from signature blunts and long layers to soft shapes that hold their form between visits.
+        </p>
+      </article>
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">Men's cuts</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Sharp men's cutting, scissor work, fades, and beard shaping where the precision shows.
+        </p>
+      </article>
+    </div>
+  </div>
+
+  <!-- Nail services -->
+  <div class="mt-16">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="label" style="color:#C4AB70;">Nails</span>
+      <span class="hairline-cream flex-1"></span>
+    </div>
+    <p class="text-cream/75 text-[15px] leading-[1.7] max-w-2xl mb-10">
+      Nail art is where I have the most years of experience behind me. Complex hand-painted designs, themed sets, intricate detail work, the kind of nails that become a real piece of small art on the hand. The technical services below are the foundation, the art is what I love.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3" style="color:#C4AB70;">Custom nail art</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Hand-painted designs, themed and seasonal sets, intricate detail and color work. The level of complexity scales to whatever you bring me. This is my deepest specialty.
+        </p>
+      </article>
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">Acrylic</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Classic acrylic sets with custom shaping, length, and color, built for daily life and longer wear.
+        </p>
+      </article>
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">Gel-X</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Soft gel tip extensions, lighter than acrylic, gentler on the natural nail underneath, cured fast and worn long.
+        </p>
+      </article>
+      <article>
+        <h3 class="font-display text-xl sm:text-2xl mb-3">Gel overlay</h3>
+        <p class="text-cream/75 text-[14px] leading-[1.7]">
+          Gel cured directly over your natural nail for a strong, glossy finish without an extension. Strength without commitment.
+        </p>
+      </article>
+    </div>
+  </div>
+
+  <p class="mt-16 text-cream/70 text-[15px] leading-[1.7] max-w-2xl">
+    What's right for you depends on your hair, your lifestyle, and your goals. We'll work it out together in the consult, and I'll tell you honestly even if the answer isn't what you came in expecting.
+  </p>
+</section>
+
+<!-- 3. THE CONSULT -->
+<section id="consult" class="bg-cream-2 text-charcoal px-6 sm:px-10 lg:px-16 py-24 sm:py-32 reveal">
+  <div class="grid grid-cols-12 gap-x-6 gap-y-12">
+    <header class="col-span-12 lg:col-span-4">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="label">02</span>
+        <span class="hairline-soft w-10"></span>
+      </div>
+      <h2 class="font-display text-5xl sm:text-6xl lg:text-[72px] leading-[0.98] tracking-tight">
+        Begin a <span class="font-display-italic text-garnet">consult.</span>
+      </h2>
+      <p class="mt-8 text-mute text-[16px] leading-[1.7] max-w-md">
+        If you've been reading and you're ready to talk, this is where we start. The consultation is the door, not the appointment. I want to understand where your hair is now, where you want it to go, and whether what you're hoping for is something I can build with you well. I take you seriously from the very first message.
+      </p>
+    </header>
+
+    <form id="consult-form" class="col-span-12 lg:col-span-7 lg:col-start-6 space-y-12" novalidate>
+      <div>
+        <div class="flex items-baseline justify-between mb-4">
+          <span class="label">Step 1</span>
+          <span class="label">Inspiration</span>
+        </div>
+        <p class="text-mute text-[15px] leading-[1.7] mb-5">
+          Upload a few photos of the hair you're after. They don't need to be polished, just the references that have lived in your head for a while. I'll read them and ask you a couple of follow-up questions that the photos themselves can't answer.
+        </p>
+
+        <label for="inspo-input" id="upload-tile" class="upload-tile block">
+          <input id="inspo-input" type="file" accept="image/*" multiple class="hidden" />
+          <div class="font-display text-2xl mb-1" id="upload-title">Drop photos here, or click to choose</div>
+          <div class="text-mute text-[13px]">Up to 6 images, jpg or png. Compressed locally so nothing huge gets sent.</div>
+          <div id="upload-thumbs" class="mt-5 flex flex-wrap gap-3 justify-center"></div>
+        </label>
+
+        <button type="button" id="skip-upload" class="mt-3 text-[12px] tracking-[0.2em] uppercase text-mute hover:text-charcoal transition-colors">I'll describe it in words instead</button>
+
+        <div id="ai-reading" class="hidden mt-6 ai-card">
+          <div class="ai-label mb-2">Reading your photos</div>
+          <div class="text-charcoal text-[15px]">Looking at tone, dimension, length, and movement <span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+
+        <div id="ai-questions" class="hidden mt-6 space-y-5"></div>
+      </div>
+
+      <div id="step-2" class="hidden">
+        <div class="flex items-baseline justify-between mb-4">
+          <span class="label">Step 2</span>
+          <span class="label">Where your hair is now</span>
+        </div>
+        <label class="block">
+          <span class="text-mute text-[14px] leading-[1.6] mb-2 block">Walk me through your hair right now. Length, density, anything you've had done in the last year or two, and how it's holding up.</span>
+          <textarea class="field" name="hair_story" rows="3" placeholder="As much or as little detail as feels right."></textarea>
+        </label>
+      </div>
+
+      <div id="step-3" class="hidden">
+        <div class="flex items-baseline justify-between mb-4">
+          <span class="label">Step 3</span>
+          <span class="label">Where you're hoping it goes</span>
+        </div>
+        <label class="block">
+          <span class="text-mute text-[14px] leading-[1.6] mb-2 block">What you're picturing. Length, color, fullness, lifestyle fit, the whole thing.</span>
+          <textarea class="field" name="goals" rows="3" placeholder="Speak to me like a friend, not a salon form."></textarea>
+        </label>
+      </div>
+
+      <div id="step-4" class="hidden grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
+        <fieldset>
+          <legend class="label mb-4">Budget range</legend>
+          <div class="flex flex-wrap gap-2">
+            <span class="pill"><input type="radio" id="b1" name="budget" value="exploring" /><label for="b1">Just exploring</label></span>
+            <span class="pill"><input type="radio" id="b2" name="budget" value="500-1000" /><label for="b2">$500 to 1,000</label></span>
+            <span class="pill"><input type="radio" id="b3" name="budget" value="1000-1800" /><label for="b3">$1,000 to 1,800</label></span>
+            <span class="pill"><input type="radio" id="b4" name="budget" value="1800+" /><label for="b4">$1,800 and up</label></span>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend class="label mb-4">Preferred timing</legend>
+          <div class="flex flex-wrap gap-2">
+            <span class="pill"><input type="radio" id="t1" name="timing" value="month" /><label for="t1">Within a month</label></span>
+            <span class="pill"><input type="radio" id="t2" name="timing" value="1-3" /><label for="t2">1 to 3 months</label></span>
+            <span class="pill"><input type="radio" id="t3" name="timing" value="3+" /><label for="t3">3 or more months out</label></span>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="step-5" class="hidden grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+        <label class="block">
+          <span class="label block mb-2">Your name</span>
+          <input class="field" type="text" name="name" autocomplete="name" placeholder="First and last" />
+        </label>
+        <label class="block">
+          <span class="label block mb-2">Phone or email</span>
+          <input class="field" type="text" name="contact" placeholder="Whichever is easier for you" />
+        </label>
+        <label class="block md:col-span-2">
+          <span class="label block mb-2">Who referred you, if anyone</span>
+          <input class="field" type="text" name="referrer" placeholder="Their name is the only step you need to take." />
+        </label>
+      </div>
+
+      <div id="step-submit" class="hidden pt-2 border-t border-charcoal/10">
+        <p class="text-mute text-[14px] leading-[1.7] mb-6 max-w-[52ch]">
+          This is a request, not a confirmed booking. I'll reach out within 48 hours so we can talk through your goals and find a time that works for both of us.
+        </p>
+        <button type="submit" class="btn-primary">Send your consult</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- 4. REFERRALS (moved up, follows Consult) -->
+<section id="referrals" class="bg-olive text-cream px-6 sm:px-10 lg:px-16 py-24 sm:py-32 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="label" style="color:#C4AB70;">03</span>
+      <span class="hairline-cream w-10"></span>
+    </div>
+    <h2 class="font-display text-4xl sm:text-5xl leading-[1.05] mb-10" style="color:#C4AB70;">How the care comes back.</h2>
+
+    <article class="invite-card text-charcoal p-8 sm:p-12 lg:p-16 rounded-[2px]">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <div class="label" style="color:#5C0B0B;">Care, returning</div>
+          <div class="font-display text-2xl sm:text-3xl mt-1">An invitation</div>
+        </div>
+        <hr class="hairline-brass flex-1 ml-8" />
+      </div>
+
+      <div class="space-y-7 text-charcoal text-[16px] sm:text-[17px] leading-[1.8] max-w-3xl">
+        <p>
+          I want to grow as a service provider through a community of people who already know me, who tell the people they love, so when you send someone my way I want to send something real back to you in return. Rather than ask you to chase a punchcard or watch a leaderboard, every dollar you spend with me adds to your points, and every person you bring through my door adds many more of them, because the trust it takes to send me a friend matters far more to me than any single appointment ever will.
+        </p>
+        <p>
+          The points don't expire and they don't put you in competition with anyone, they're just my way of giving back to those who trust me so that when you come back I can make sure the care is moving in both directions.
+        </p>
+      </div>
+
+      <hr class="hairline-brass my-10" />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+        <div>
+          <div class="label mb-3" style="color:#5C0B0B;">What your points come back as</div>
+          <ul class="space-y-2 text-charcoal text-[15px] leading-[1.7]">
+            <li>Take-home care kits between visits</li>
+            <li>Discounts on services</li>
+            <li>Treatments such as K18, gloss, or deep conditioning</li>
+            <li>Complimentary service add-ons</li>
+            <li>Complimentary maintenance installs</li>
+            <li class="font-brand-italic text-mute pt-2">and more to come</li>
+          </ul>
+        </div>
+        <div class="flex flex-col justify-end">
+          <p class="font-brand-italic text-[20px] sm:text-[22px] leading-[1.4] text-charcoal/80 max-w-sm">
+            When we meet for your consultation, just tell me who referred you and I'll take the rest from there.
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 5. THE WHY -->
+<section id="why" class="bg-garnet text-cream px-6 sm:px-10 lg:px-16 py-28 sm:py-40 reveal">
+  <div class="grid grid-cols-12 gap-x-6 gap-y-12">
+    <div class="col-span-12 lg:col-span-3">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="label" style="color:#C4AB70;">04</span>
+        <span class="hairline-cream w-10"></span>
+      </div>
+      <h2 class="font-display text-4xl sm:text-5xl leading-[1.05]">The why.</h2>
+    </div>
+    <div class="col-span-12 lg:col-span-8 lg:col-start-5 space-y-10">
+      <p class="font-display text-[26px] sm:text-[32px] lg:text-[38px] leading-[1.25] tracking-tight">
+        Being truly seen and valued is what makes people whole, and that can happen at a campfire, over a hot meal, or in a chair. My work is to build that moment into every service I do, every system I touch, and every space I create, because skill without care is empty and care without skill fails people, and I refuse to choose between them.
+      </p>
+      <p class="font-brand-italic text-[28px] sm:text-[34px] leading-[1.2]" style="color:#C4AB70;">
+        Jesus would wash their feet, so I will wash their hair.
+      </p>
+      <p class="text-cream/85 text-[16px] leading-[1.7] max-w-2xl pt-6 border-t border-cream/15">
+        Part of this work also happens outside the chair, through community days at my church and local schools, where clean and dignified hair is treated like the right it should be rather than a luxury.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. THE SCIENCE -->
+<section id="science" class="bg-cream text-charcoal px-6 sm:px-10 lg:px-16 py-24 sm:py-32 reveal">
+  <div class="grid grid-cols-12 gap-x-6 gap-y-12">
+    <div class="col-span-12 lg:col-span-3">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="label">05</span>
+        <span class="hairline-soft w-10"></span>
+      </div>
+      <h2 class="font-display text-4xl sm:text-5xl leading-[1.05]">Hair, considered.</h2>
+    </div>
+    <div class="col-span-12 lg:col-span-8 lg:col-start-5">
+      <p class="font-display text-[24px] sm:text-[30px] leading-[1.3] mb-10">
+        Extensions are part of a longer relationship with your hair, not a single one-time event.
+      </p>
+      <div class="space-y-6 text-mute text-[16px] leading-[1.75] max-w-2xl">
+        <p>
+          The way they're installed matters, the way they're cared for between visits matters, and the bond and scalp underneath them matter most of all. Treatments like K18, careful removal, and ongoing maintenance aren't extras I sell on top of an install, they're how the work actually holds up over time and how the hair underneath stays healthy.
+        </p>
+        <p class="text-charcoal">
+          Healthy in, healthy out, healthy underneath. That's the standard, not the upgrade.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. THE TRAINING -->
+<section id="training" class="bg-garnet text-cream px-6 sm:px-10 lg:px-16 py-24 sm:py-32 reveal">
+  <div class="grid grid-cols-12 gap-x-6 gap-y-12">
+    <div class="col-span-12 lg:col-span-3">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="label" style="color:#C4AB70;">06</span>
+        <span class="hairline-cream w-10"></span>
+      </div>
+      <h2 class="font-display text-4xl sm:text-5xl leading-[1.05]">Where I'm trained.</h2>
+    </div>
+    <div class="col-span-12 lg:col-span-6 lg:col-start-5 space-y-6 text-cream/85 text-[16px] leading-[1.75]">
+      <p>
+        My foundation is being built at <span class="text-cream">The Avenue Academy in Albuquerque</span>, where I'm finishing cosmetology school and graduating in December 2026. In April 2026 I completed <span class="text-cream">Bellami's Professional Extension Masterclass</span>, which certified me in the four core methods I work in: tape-ins, K-tips, I-tips, and wefts.
+      </p>
+      <p>
+        Beyond formal training, most of what shapes how I work comes from shadowing the stylists I trust, from constant reading on hair health and color science, and from treating every install I do like the most important one I've done so far.
+      </p>
+    </div>
+    <aside class="col-span-12 lg:col-span-3 lg:col-start-10 lg:border-l lg:border-cream/15 lg:pl-8">
+      <ul class="space-y-5 text-[13px]">
+        <li>
+          <div class="label mb-1" style="color:#C4AB70;">School</div>
+          <div class="text-cream">The Avenue Academy</div>
+          <div class="text-cream/65">Class of December 2026</div>
+        </li>
+        <li>
+          <div class="label mb-1" style="color:#C4AB70;">Certification</div>
+          <div class="text-cream">Bellami Professional</div>
+          <div class="text-cream/65">Extension Masterclass, April 2026</div>
+        </li>
+        <li>
+          <div class="label mb-1" style="color:#C4AB70;">Methods</div>
+          <div class="text-cream">Tape-ins, K-tips, I-tips, wefts</div>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- 7. PERSONAL -->
+<section id="personal" class="bg-bone text-charcoal px-6 sm:px-10 lg:px-16 py-24 sm:py-32 reveal">
+  <div class="grid grid-cols-12 gap-x-6 gap-y-12">
+    <div class="col-span-12 lg:col-span-3">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="label">07</span>
+        <span class="hairline-soft w-10"></span>
+      </div>
+      <h2 class="font-display text-4xl sm:text-5xl leading-[1.05]">A little about me, off the chair.</h2>
+    </div>
+    <div class="col-span-12 lg:col-span-7 lg:col-start-5">
+      <p class="text-charcoal text-[17px] leading-[1.8]">
+        Outside of the salon I'm finishing cosmetology school at The Avenue Academy and building a software alongside my dad. I am passionate about creativity and art and the science of color and hair care. I'm driven by education and always progressing in my work. I love to learn and be challenged and to connect with and meet new people. The conviction underneath all of my work is simple, even if living it isn't: that everyone deserves to be treated with real dignity, that good craft and genuine care belong together rather than apart, and that what happens in a chair can hold as much weight as what happens in any other room of someone's life.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 9. THE SYSTEM teaser -->
+<section id="system" class="bg-olive-2 text-cream px-6 sm:px-10 lg:px-16 py-16 reveal">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+    <div class="flex items-center gap-4">
+      <span class="label" style="color:#C4AB70;">08</span>
+      <span class="hairline-cream w-10"></span>
+    </div>
+    <p class="font-display text-2xl sm:text-3xl lg:text-4xl leading-[1.2] flex-1 max-w-3xl">
+      I'm also building something quiet for this industry alongside my dad. <span class="font-display-italic" style="color:#C4AB70;">More on that when it's ready.</span>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-olive text-cream px-6 sm:px-10 lg:px-16 pt-16 sm:pt-24 pb-10 border-t border-cream/10">
+  <div class="grid grid-cols-12 gap-x-6 gap-y-12">
+    <div class="col-span-12 lg:col-span-7">
+      <p class="font-display text-5xl sm:text-6xl lg:text-7xl leading-[0.98] tracking-tight">
+        What makes<br />you <span class="font-display-italic" style="color:#C4AB70;">whole.</span>
+      </p>
+    </div>
+    <div class="col-span-6 lg:col-span-2 lg:col-start-9">
+      <div class="label mb-3" style="color:#C4AB70;">Find me</div>
+      <a href="https://instagram.com/belle.co.beauty" target="_blank" rel="noopener" class="block hover:opacity-80 transition-opacity">@belle.co.beauty</a>
+    </div>
+    <div class="col-span-6 lg:col-span-2">
+      <div class="label mb-3" style="color:#C4AB70;">Studio</div>
+      <p>Albuquerque, New Mexico</p>
+    </div>
+    <div class="col-span-12 flex flex-col-reverse sm:flex-row sm:items-end sm:justify-between gap-6 pt-10 border-t border-cream/10">
+      <p class="label" style="color:#C4AB70;">© <span id="year"></span>, Belle, belle.co.beauty</p>
+      <p class="label" style="color:#C4AB70;">Skill and care, without conditions.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = String(new Date().getFullYear());
+
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    }
+  }, { threshold: 0.10, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Mocked inspo flow, built with safe DOM methods only
+  const inspoInput   = document.getElementById('inspo-input');
+  const uploadTile   = document.getElementById('upload-tile');
+  const uploadTitle  = document.getElementById('upload-title');
+  const uploadThumbs = document.getElementById('upload-thumbs');
+  const aiReading    = document.getElementById('ai-reading');
+  const aiQuestions  = document.getElementById('ai-questions');
+  const skipBtn      = document.getElementById('skip-upload');
+  const stepIds      = ['step-2', 'step-3', 'step-4', 'step-5', 'step-submit'];
+
+  const mockedQuestions = [
+    {
+      label: 'Per photo follow up',
+      text: 'What about this photo pulled you toward saving it the most, the color, the length, the cut, or the overall feeling of it?',
+      options: ['The color and tone', 'The length', 'The cut and shape', 'The overall feeling']
+    },
+    {
+      label: 'Per photo follow up',
+      text: 'Is the length close to what you want to land at, or somewhere shorter or longer than this?',
+      options: ['Right around this', 'A little shorter', 'A little longer', 'Open to your call']
+    },
+    {
+      label: 'About fullness',
+      text: 'How much fullness on top of your existing density are you picturing, more of a soft boost or a real transformation?',
+      options: ['Soft, everyday boost', 'Noticeably fuller', 'Full transformation']
+    }
+  ];
+
+  function revealRestOfForm() {
+    stepIds.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      setTimeout(() => {
+        el.classList.remove('hidden');
+        el.classList.add('reveal', 'in');
+      }, i * 120);
+    });
+  }
+
+  function makeQuestionCard(q, idx) {
+    const card = document.createElement('div');
+    card.className = 'ai-card';
+
+    const labelDiv = document.createElement('div');
+    labelDiv.className = 'ai-label mb-2';
+    labelDiv.textContent = q.label;
+    card.appendChild(labelDiv);
+
+    const textP = document.createElement('p');
+    textP.className = 'text-charcoal text-[15px] leading-[1.6] mb-4';
+    textP.textContent = q.text;
+    card.appendChild(textP);
+
+    const optsDiv = document.createElement('div');
+    optsDiv.className = 'flex flex-wrap gap-2';
+    q.options.forEach((opt, i) => {
+      const span = document.createElement('span');
+      span.className = 'pill';
+
+      const inputId = 'aiq' + idx + '-' + i;
+      const inputEl = document.createElement('input');
+      inputEl.type = 'radio';
+      inputEl.id = inputId;
+      inputEl.name = 'aiq' + idx;
+      inputEl.value = opt;
+
+      const labelEl = document.createElement('label');
+      labelEl.htmlFor = inputId;
+      labelEl.textContent = opt;
+
+      span.appendChild(inputEl);
+      span.appendChild(labelEl);
+      optsDiv.appendChild(span);
+    });
+    card.appendChild(optsDiv);
+    return card;
+  }
+
+  function renderQuestions() {
+    aiQuestions.replaceChildren();
+    mockedQuestions.forEach((q, idx) => {
+      aiQuestions.appendChild(makeQuestionCard(q, idx));
+    });
+    aiQuestions.classList.remove('hidden');
+  }
+
+  function startMockedAnalysis() {
+    aiReading.classList.remove('hidden');
+    aiQuestions.classList.add('hidden');
+    setTimeout(() => {
+      aiReading.classList.add('hidden');
+      renderQuestions();
+      revealRestOfForm();
+    }, 1700);
+  }
+
+  function handleFiles(files) {
+    if (!files || !files.length) return;
+    const count = files.length;
+    uploadTitle.textContent = count + ' ' + (count === 1 ? 'photo' : 'photos') + ' ready';
+    uploadThumbs.replaceChildren();
+    Array.from(files).slice(0, 6).forEach(file => {
+      const url = URL.createObjectURL(file);
+      const thumb = document.createElement('div');
+      thumb.className = 'w-16 h-20 rounded-[2px] bg-cover bg-center';
+      thumb.style.backgroundImage = 'url(' + url + ')';
+      uploadThumbs.appendChild(thumb);
+    });
+    startMockedAnalysis();
+  }
+
+  inspoInput.addEventListener('change', (e) => handleFiles(e.target.files));
+  skipBtn.addEventListener('click', () => { revealRestOfForm(); });
+
+  ['dragenter', 'dragover'].forEach(ev => uploadTile.addEventListener(ev, (e) => {
+    e.preventDefault(); e.stopPropagation(); uploadTile.classList.add('dragging');
+  }));
+  ['dragleave', 'drop'].forEach(ev => uploadTile.addEventListener(ev, (e) => {
+    e.preventDefault(); e.stopPropagation(); uploadTile.classList.remove('dragging');
+  }));
+  uploadTile.addEventListener('drop', (e) => handleFiles(e.dataTransfer.files));
+
+  document.getElementById('consult-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert("Preview only. In the build, this submits to your inbox via Opélle's Metis pipeline.");
+  });
+
+  // Tab clicks: scroll programmatically (bypass anchor navigation,
+  // which can be blocked inside iframes/preview panels)
+  document.querySelectorAll('.tab-link, .tab-row').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const id = link.getAttribute('data-target');
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      const nav = document.getElementById('site-nav');
+      const navHeight = nav ? nav.offsetHeight : 60;
+      const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 12;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  // Also patch in-page hash links (Begin a consult, hero CTA, footer links)
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    if (link.classList.contains('tab-link') || link.classList.contains('tab-row')) return;
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#' || href.length < 2) return;
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+      e.preventDefault();
+      const nav = document.getElementById('site-nav');
+      const navHeight = nav ? nav.offsetHeight : 60;
+      const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 12;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  // Scrollspy: highlight the current section in the tab nav
+  const navLinks = document.querySelectorAll('[data-target]');
+  const idToLinks = new Map();
+  navLinks.forEach(link => {
+    const id = link.getAttribute('data-target');
+    if (!idToLinks.has(id)) idToLinks.set(id, []);
+    idToLinks.get(id).push(link);
+  });
+
+  function setActive(id) {
+    navLinks.forEach(link => {
+      const isMatch = link.getAttribute('data-target') === id;
+      link.classList.toggle('is-active', isMatch);
+    });
+  }
+
+  const spyTargets = ['craft', 'consult', 'referrals', 'why', 'science', 'training', 'personal']
+    .map(id => document.getElementById(id))
+    .filter(el => el !== null);
+
+  // Pick whichever section's top is most recently crossed above the spy line.
+  // Robust to tall sections that never reach an intersection-ratio threshold.
+  function updateActiveSection() {
+    const navHeight = (document.getElementById('site-nav') || {}).offsetHeight || 60;
+    const spyLine = navHeight + 60; // a hair below the nav
+    let activeId = null;
+    let bestTop = -Infinity;
+    for (const sec of spyTargets) {
+      const top = sec.getBoundingClientRect().top;
+      if (top <= spyLine && top > bestTop) {
+        bestTop = top;
+        activeId = sec.id;
+      }
+    }
+    if (activeId) setActive(activeId);
+    else navLinks.forEach(l => l.classList.remove('is-active'));
+  }
+
+  let spyTicking = false;
+  function onScrollSpy() {
+    if (spyTicking) return;
+    spyTicking = true;
+    requestAnimationFrame(() => {
+      updateActiveSection();
+      spyTicking = false;
+    });
+  }
+  window.addEventListener('scroll', onScrollSpy, { passive: true });
+  window.addEventListener('resize', onScrollSpy);
+  updateActiveSection();
+
+  // Custom brass cursor, with touch fallback that fades after release
+  (function setupCursor() {
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    const ring = document.createElement('div');
+    ring.className = 'cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+    if (isTouch) {
+      // On touch devices, hide initially, show at touch point, fade after release
+      dot.classList.add('fading');
+      ring.classList.add('fading');
+
+      let fadeTimer = null;
+
+      document.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        if (!touch) return;
+        if (fadeTimer) { clearTimeout(fadeTimer); fadeTimer = null; }
+
+        dot.style.left = touch.clientX + 'px';
+        dot.style.top = touch.clientY + 'px';
+        ring.style.left = touch.clientX + 'px';
+        ring.style.top = touch.clientY + 'px';
+
+        dot.classList.remove('fading');
+        ring.classList.remove('fading');
+        dot.classList.add('hovering');
+        ring.classList.add('hovering');
+      }, { passive: true });
+
+      document.addEventListener('touchend', () => {
+        fadeTimer = setTimeout(() => {
+          dot.classList.add('fading');
+          ring.classList.add('fading');
+          dot.classList.remove('hovering');
+          ring.classList.remove('hovering');
+        }, 220);
+      });
+
+      return;
+    }
+
+    // Mouse devices: continuous follow with eased ring
+    let cursorX = -100, cursorY = -100;
+    let ringX = -100, ringY = -100;
+
+    document.addEventListener('mousemove', (e) => {
+      cursorX = e.clientX;
+      cursorY = e.clientY;
+      dot.style.left = cursorX + 'px';
+      dot.style.top = cursorY + 'px';
+    });
+
+    function tick() {
+      ringX += (cursorX - ringX) * 0.12;
+      ringY += (cursorY - ringY) * 0.12;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    function bindHoverTargets() {
+      document.querySelectorAll("a, button, input, select, textarea, label, [role='button']").forEach(el => {
+        if (el.dataset.cursorBound === '1') return;
+        el.dataset.cursorBound = '1';
+        el.addEventListener('mouseenter', () => {
+          dot.classList.add('hovering');
+          ring.classList.add('hovering');
+        });
+        el.addEventListener('mouseleave', () => {
+          dot.classList.remove('hovering');
+          ring.classList.remove('hovering');
+        });
+      });
+    }
+    bindHoverTargets();
+
+    const cursorObserver = new MutationObserver(bindHoverTargets);
+    cursorObserver.observe(document.body, { childList: true, subtree: true });
+  })();
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const menuSheet = document.getElementById('menu-sheet');
+  if (menuBtn && menuSheet) {
+    menuBtn.addEventListener('click', () => {
+      const open = menuSheet.classList.toggle('hidden') === false;
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menuSheet.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menuSheet.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

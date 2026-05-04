@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Craft — Gallery Direction Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,30..100;1,9..144,300..500,30..100&family=DM+Sans:opsz,wght@9..40,300..500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          bark: '#9F9A8E',
+          'bark-warm': '#8D887D',
+          olive: '#1f231a',
+          'olive-mid': '#3B3C23',
+          cream: '#F1EFE0',
+          'cream-soft': '#E5E3D3',
+          stone: '#CAC7B5',
+          garnet: '#440606',
+          'garnet-ruby': '#751212',
+          brass: '#C4AB70',
+          'brass-warm': '#D0BA82',
+        },
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'DM Sans', system-ui, sans-serif; }
+  .font-display { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144, 'SOFT' 50; }
+  .font-display-italic { font-family: 'Fraunces', serif; font-style: italic; font-variation-settings: 'opsz' 144, 'SOFT' 100; }
+  ::selection { background: #C4AB70; color: #1f231a; }
+
+  .meta { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; }
+
+  /* Tile placeholder — never reads broken */
+  .tile {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(60% 50% at 30% 22%, rgba(196,171,112,0.18), transparent 70%),
+      radial-gradient(70% 60% at 78% 82%, rgba(68,6,6,0.20), transparent 70%),
+      linear-gradient(180deg, #2A2E22 0%, #161A10 100%);
+  }
+  .tile::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(241,239,224,0.06) 1px, transparent 1px);
+    background-size: 4px 4px; pointer-events: none;
+  }
+  .tile.alt {
+    background:
+      radial-gradient(60% 50% at 70% 30%, rgba(143,173,200,0.18), transparent 70%),
+      radial-gradient(70% 60% at 30% 75%, rgba(196,171,112,0.16), transparent 70%),
+      linear-gradient(180deg, #3B3C23 0%, #1f231a 100%);
+  }
+  .tile.warm {
+    background:
+      radial-gradient(60% 50% at 40% 30%, rgba(208,186,130,0.22), transparent 70%),
+      radial-gradient(70% 60% at 80% 80%, rgba(117,18,18,0.22), transparent 70%),
+      linear-gradient(180deg, #2C2418 0%, #1A1410 100%);
+  }
+  .tile.cool {
+    background:
+      radial-gradient(60% 50% at 50% 25%, rgba(202,199,181,0.18), transparent 70%),
+      radial-gradient(70% 60% at 30% 80%, rgba(143,173,200,0.14), transparent 70%),
+      linear-gradient(180deg, #1F2825 0%, #131815 100%);
+  }
+  .caption-overlay {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 14px 16px;
+    background: linear-gradient(180deg, transparent 0%, rgba(15,17,10,0.6) 100%);
+    color: #F1EFE0;
+  }
+
+  /* Tabs */
+  .tab-btn {
+    transition: color .25s ease, border-color .25s ease, background-color .25s ease;
+  }
+  .tab-btn[aria-selected="true"] { color: #C4AB70; border-color: #C4AB70; }
+  .tab-btn[aria-selected="false"]:hover { color: #F1EFE0; }
+
+  .tab-panel { display: none; }
+  .tab-panel[data-active="true"] { display: block; animation: fade .5s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+
+  /* B — horizontal scroll */
+  .h-scroll { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .h-scroll > * { scroll-snap-align: start; }
+  .h-scroll::-webkit-scrollbar { height: 4px; }
+  .h-scroll::-webkit-scrollbar-thumb { background: rgba(196,171,112,0.4); border-radius: 999px; }
+
+  /* C — full-bleed snap */
+  .v-snap { scroll-snap-type: y mandatory; height: 70vh; overflow-y: scroll; }
+  .v-snap > section { scroll-snap-align: start; height: 70vh; position: relative; }
+</style>
+</head>
+
+<body class="bg-olive text-cream antialiased">
+
+<!-- Header -->
+<header class="px-6 sm:px-10 py-8 border-b border-cream/10">
+  <div class="flex items-end justify-between gap-6 flex-wrap">
+    <div>
+      <p class="meta text-brass mb-2">Brainstorm preview · belle.co.beauty</p>
+      <h1 class="font-display text-3xl sm:text-4xl leading-tight">The Craft — gallery directions</h1>
+      <p class="text-cream/70 mt-2 text-sm max-w-xl">Same content. Four different shapes. Tap a tab.</p>
+    </div>
+    <p class="meta text-cream/40">Placeholder tiles · drop real photos later</p>
+  </div>
+</header>
+
+<!-- Tabs -->
+<div class="px-6 sm:px-10 sticky top-0 z-30 bg-olive/95 backdrop-blur border-b border-cream/10">
+  <div role="tablist" class="flex flex-wrap gap-1 sm:gap-2 -mb-px">
+    <button role="tab" aria-selected="true" data-tab="A" class="tab-btn meta py-5 px-4 sm:px-6 border-b-2 border-transparent text-cream/60">
+      A · Editorial Grid
+    </button>
+    <button role="tab" aria-selected="false" data-tab="B" class="tab-btn meta py-5 px-4 sm:px-6 border-b-2 border-transparent text-cream/60">
+      B · Horizontal Reel
+    </button>
+    <button role="tab" aria-selected="false" data-tab="C" class="tab-btn meta py-5 px-4 sm:px-6 border-b-2 border-transparent text-cream/60">
+      C · Full-Bleed Sequence
+    </button>
+    <button role="tab" aria-selected="false" data-tab="D" class="tab-btn meta py-5 px-4 sm:px-6 border-b-2 border-transparent text-cream/60">
+      D · Featured + Grid
+    </button>
+  </div>
+</div>
+
+<!-- ─── A · Asymmetric Editorial Grid ────────────────────────────── -->
+<div class="tab-panel" data-tab="A" data-active="true">
+  <section class="px-6 sm:px-10 py-12 sm:py-16">
+    <div class="flex items-center gap-4 mb-10">
+      <span class="meta text-brass">01 — The Craft</span>
+      <span class="h-px bg-cream/20 flex-1"></span>
+    </div>
+    <h2 class="font-display text-5xl sm:text-7xl leading-[0.95] tracking-tight max-w-4xl">
+      The work, <span class="font-display-italic text-brass">laid out.</span>
+    </h2>
+    <p class="text-cream/60 mt-6 max-w-md">
+      Eight pieces, hand-arranged. Different sizes. Whitespace as silence between notes.
+    </p>
+
+    <div class="grid grid-cols-12 gap-3 sm:gap-4 mt-12">
+      <figure class="col-span-7 row-span-2 tile aspect-[5/6]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 01 · Wefts</div>
+          <div class="font-display text-xl mt-1">Cinematic length, dimensional blonde</div>
+        </figcaption>
+      </figure>
+      <figure class="col-span-5 tile alt aspect-[4/3]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 02 · K-tips</div>
+        </figcaption>
+      </figure>
+      <figure class="col-span-5 tile warm aspect-[4/5]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 03 · Tape-ins</div>
+        </figcaption>
+      </figure>
+      <figure class="col-span-4 tile cool aspect-[3/4]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 04 · I-tips</div>
+        </figcaption>
+      </figure>
+      <figure class="col-span-8 tile aspect-[16/9]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 05 · Color correction + wefts</div>
+          <div class="font-display text-xl mt-1">Six-hour reset for a complex case</div>
+        </figcaption>
+      </figure>
+      <figure class="col-span-6 tile alt aspect-[1/1]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 06 · Detail study</div>
+        </figcaption>
+      </figure>
+      <figure class="col-span-6 tile warm aspect-[1/1]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 07 · Maintenance, three months in</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="mt-10 flex items-center justify-between border-t border-cream/10 pt-6 text-cream/60 text-sm">
+      <p>Pros: editorial discipline · easy to swap photos · scales 4 → 12 pieces</p>
+      <p class="hidden sm:block">Cons: needs at least 5 strong photos to feel intentional</p>
+    </div>
+  </section>
+</div>
+
+<!-- ─── B · Cinematic Horizontal Reel ────────────────────────────── -->
+<div class="tab-panel" data-tab="B">
+  <section class="py-12 sm:py-16">
+    <div class="px-6 sm:px-10">
+      <div class="flex items-center gap-4 mb-10">
+        <span class="meta text-brass">01 — The Craft</span>
+        <span class="h-px bg-cream/20 flex-1"></span>
+      </div>
+      <h2 class="font-display text-5xl sm:text-7xl leading-[0.95] tracking-tight max-w-4xl">
+        The work, <span class="font-display-italic text-brass">in passage.</span>
+      </h2>
+      <p class="text-cream/60 mt-6 max-w-md">
+        Each piece arrives, holds, leaves. Swipe or scroll sideways. Like a slow film reel.
+      </p>
+    </div>
+
+    <div class="h-scroll mt-12 flex gap-4 overflow-x-auto pl-6 sm:pl-10 pr-6 sm:pr-10">
+      <figure class="tile shrink-0 w-[78vw] sm:w-[60vw] lg:w-[44vw] aspect-[4/5]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 01 · Wefts</div>
+          <div class="font-display text-2xl mt-1">Dimensional blonde, full transformation</div>
+        </figcaption>
+      </figure>
+      <figure class="tile alt shrink-0 w-[78vw] sm:w-[60vw] lg:w-[44vw] aspect-[4/5]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 02 · K-tips</div>
+          <div class="font-display text-2xl mt-1">Active lifestyle, near-invisible attachment</div>
+        </figcaption>
+      </figure>
+      <figure class="tile warm shrink-0 w-[78vw] sm:w-[60vw] lg:w-[44vw] aspect-[4/5]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 03 · Tape-ins</div>
+          <div class="font-display text-2xl mt-1">Everyday fullness, blended layers</div>
+        </figcaption>
+      </figure>
+      <figure class="tile cool shrink-0 w-[78vw] sm:w-[60vw] lg:w-[44vw] aspect-[4/5]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 04 · I-tips</div>
+          <div class="font-display text-2xl mt-1">Long-term wear, 360° movement</div>
+        </figcaption>
+      </figure>
+      <figure class="tile shrink-0 w-[78vw] sm:w-[60vw] lg:w-[44vw] aspect-[4/5]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 05 · Color correction</div>
+          <div class="font-display text-2xl mt-1">Six-hour reset</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="px-6 sm:px-10 mt-10 flex items-center justify-between border-t border-cream/10 pt-6 text-cream/60 text-sm">
+      <p>Pros: theatrical · works great with even 3 photos · forces single-piece focus</p>
+      <p class="hidden sm:block">Cons: viewers must engage to see more · easy to miss photos</p>
+    </div>
+  </section>
+</div>
+
+<!-- ─── C · Stacked Full-Bleed Sequence ──────────────────────────── -->
+<div class="tab-panel" data-tab="C">
+  <section class="py-12 sm:py-16">
+    <div class="px-6 sm:px-10">
+      <div class="flex items-center gap-4 mb-10">
+        <span class="meta text-brass">01 — The Craft</span>
+        <span class="h-px bg-cream/20 flex-1"></span>
+      </div>
+      <h2 class="font-display text-5xl sm:text-7xl leading-[0.95] tracking-tight max-w-4xl">
+        The work, <span class="font-display-italic text-brass">unfolding.</span>
+      </h2>
+      <p class="text-cream/60 mt-6 max-w-md">
+        Each piece fills the frame. Scroll snaps you from one to the next. Most cinematic. Highest conviction needed in each photo.
+      </p>
+    </div>
+
+    <div class="v-snap mt-12 border-t border-b border-cream/10">
+      <section class="tile">
+        <div class="absolute inset-0 flex flex-col justify-end p-8 sm:p-14">
+          <div class="meta text-brass mb-3">Plate 01 · Wefts</div>
+          <h3 class="font-display text-4xl sm:text-6xl leading-[0.95] max-w-2xl">Dimensional <span class="font-display-italic">blonde.</span></h3>
+          <p class="text-cream/70 mt-3 max-w-lg">Multi-pack install, custom-toned to a six-tone palette. Six hours.</p>
+        </div>
+      </section>
+      <section class="tile alt">
+        <div class="absolute inset-0 flex flex-col justify-end p-8 sm:p-14">
+          <div class="meta text-brass mb-3">Plate 02 · K-tips</div>
+          <h3 class="font-display text-4xl sm:text-6xl leading-[0.95] max-w-2xl">Active. <span class="font-display-italic">Invisible.</span></h3>
+          <p class="text-cream/70 mt-3 max-w-lg">Heat-fusion bonds, water-resistant, four-month wear cycle.</p>
+        </div>
+      </section>
+      <section class="tile warm">
+        <div class="absolute inset-0 flex flex-col justify-end p-8 sm:p-14">
+          <div class="meta text-brass mb-3">Plate 03 · Tape-ins</div>
+          <h3 class="font-display text-4xl sm:text-6xl leading-[0.95] max-w-2xl">Everyday <span class="font-display-italic">fullness.</span></h3>
+          <p class="text-cream/70 mt-3 max-w-lg">Blended through short layers. The quietest method.</p>
+        </div>
+      </section>
+      <section class="tile cool">
+        <div class="absolute inset-0 flex flex-col justify-end p-8 sm:p-14">
+          <div class="meta text-brass mb-3">Plate 04 · Color correction</div>
+          <h3 class="font-display text-4xl sm:text-6xl leading-[0.95] max-w-2xl">The <span class="font-display-italic">reset.</span></h3>
+          <p class="text-cream/70 mt-3 max-w-lg">A complex case, brought back to alignment.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="px-6 sm:px-10 mt-10 flex items-center justify-between border-t border-cream/10 pt-6 text-cream/60 text-sm">
+      <p>Pros: maximum impact per photo · feels like a film · type can live on the image</p>
+      <p class="hidden sm:block">Cons: every photo must be excellent · less forgiving</p>
+    </div>
+  </section>
+</div>
+
+<!-- ─── D · Featured + Grid Hybrid ───────────────────────────────── -->
+<div class="tab-panel" data-tab="D">
+  <section class="px-6 sm:px-10 py-12 sm:py-16">
+    <div class="flex items-center gap-4 mb-10">
+      <span class="meta text-brass">01 — The Craft</span>
+      <span class="h-px bg-cream/20 flex-1"></span>
+    </div>
+    <h2 class="font-display text-5xl sm:text-7xl leading-[0.95] tracking-tight max-w-4xl">
+      One headline. <span class="font-display-italic text-brass">Then the rest.</span>
+    </h2>
+    <p class="text-cream/60 mt-6 max-w-md">
+      A single feature piece anchors the section. Supporting work tucks beneath it.
+    </p>
+
+    <figure class="tile mt-12 aspect-[16/9] sm:aspect-[21/9]">
+      <figcaption class="caption-overlay">
+        <div class="meta text-brass">Plate 01 — Featured</div>
+        <div class="font-display text-2xl sm:text-3xl mt-1 max-w-3xl">Dimensional blonde, full transformation — six-hour install, multi-pack wefts</div>
+      </figcaption>
+    </figure>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+      <figure class="tile alt aspect-[4/5]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 02 · K-tips</div>
+        </figcaption>
+      </figure>
+      <figure class="tile warm aspect-[4/5]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 03 · Tape-ins</div>
+        </figcaption>
+      </figure>
+      <figure class="tile cool aspect-[4/5]">
+        <figcaption class="caption-overlay">
+          <div class="meta text-brass">Plate 04 · I-tips</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="mt-10 flex items-center justify-between border-t border-cream/10 pt-6 text-cream/60 text-sm">
+      <p>Pros: lowest photo count · clear hierarchy · easy to maintain</p>
+      <p class="hidden sm:block">Cons: less editorial personality · feels more "portfolio template"</p>
+    </div>
+  </section>
+</div>
+
+<!-- Footer note -->
+<footer class="px-6 sm:px-10 py-10 border-t border-cream/10 text-cream/40 text-sm">
+  All four use the same Opelle palette: garnet · brass · olive · cream. Type: Fraunces + DM Sans.
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('[role="tab"]');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    const id = t.dataset.tab;
+    tabs.forEach(x => x.setAttribute('aria-selected', x === t ? 'true' : 'false'));
+    panels.forEach(p => p.dataset.active = (p.dataset.tab === id ? 'true' : 'false'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+</script>
+
+</body>
+</html>
