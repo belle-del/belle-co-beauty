@@ -912,6 +912,28 @@
 </footer>
 
 <script>
+  // === belle.co.beauty v2 config ===
+  // Opelle public endpoint base URL. Update if Opelle deploys at a different domain.
+  const OPELLE_API_BASE = 'https://opelle.dominusfoundry.com';
+  const OPELLE_CONSULT_URL = OPELLE_API_BASE + '/api/public/consult';
+  const OPELLE_ANALYZE_URL = OPELLE_API_BASE + '/api/public/consult/analyze';
+
+  // === Referral code capture (Piece 4) ===
+  // Read ?r=CODE from URL on page load, store in sessionStorage. Survives across
+  // internal navigation but not new tabs. Falls through to the "who referred you"
+  // text field where the user can also type a name.
+  (function captureReferralCode() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get('r');
+      if (code && code.trim()) {
+        sessionStorage.setItem('belle_referral_code', code.trim());
+      }
+    } catch (e) {
+      // sessionStorage may be blocked, fail silent
+    }
+  })();
+
   document.getElementById('year').textContent = String(new Date().getFullYear());
 
   const io = new IntersectionObserver((entries) => {
@@ -934,14 +956,21 @@
   const skipBtn      = document.getElementById('skip-upload');
   const stepIds      = ['step-2', 'step-3', 'step-4', 'step-5', 'step-submit'];
 
-  const mockedQuestions = [
+  // Live questions array. Contents are filled in by analyzePhotos() from the
+  // Opelle /api/public/consult/analyze response, or from FALLBACK_QUESTIONS
+  // if that endpoint fails. renderQuestions() reads from this array.
+  const mockedQuestions = [];
+
+  // Graceful degradation set, used when the analyze endpoint is unreachable
+  // or returns aiAnalysisFailed. Keeps the form usable even if AI is down.
+  const FALLBACK_QUESTIONS = [
     {
-      label: 'Per photo follow up',
+      label: 'About this photo',
       text: 'What about this photo pulled you toward saving it the most, the color, the length, the cut, or the overall feeling of it?',
       options: ['The color and tone', 'The length', 'The cut and shape', 'The overall feeling']
     },
     {
-      label: 'Per photo follow up',
+      label: 'About length',
       text: 'Is the length close to what you want to land at, or somewhere shorter or longer than this?',
       options: ['Right around this', 'A little shorter', 'A little longer', 'Open to your call']
     },
@@ -951,6 +980,10 @@
       options: ['Soft, everyday boost', 'Noticeably fuller', 'Full transformation']
     }
   ];
+
+  // Track the latest set of analyzed photos so the final submit can include
+  // them without re-prompting the user to re-pick files.
+  let lastAnalyzedPhotos = [];
 
   function revealRestOfForm() {
     stepIds.forEach((id, i) => {
@@ -1010,14 +1043,51 @@
     aiQuestions.classList.remove('hidden');
   }
 
-  function startMockedAnalysis() {
+  // Hit the Opelle analyze endpoint with the selected photos. Returns an
+  // array of question objects shaped for renderQuestions. Falls back to the
+  // generic question set on any failure (network, non-2xx, empty list, or
+  // aiAnalysisFailed flag).
+  async function analyzePhotos(files) {
+    const formData = new FormData();
+    Array.from(files).slice(0, 6).forEach((file, i) => {
+      formData.append('photo' + i, file);
+    });
+
+    try {
+      const res = await fetch(OPELLE_ANALYZE_URL, {
+        method: 'POST',
+        body: formData,
+        mode: 'cors',
+        credentials: 'omit'
+      });
+      if (!res.ok) throw new Error('analyze failed: ' + res.status);
+      const data = await res.json();
+      if (data && Array.isArray(data.perPhotoQuestions) && data.perPhotoQuestions.length > 0 && !data.aiAnalysisFailed) {
+        // Adapt API shape to renderQuestions's expected shape.
+        return data.perPhotoQuestions.map(q => ({
+          label: typeof q.photoIndex === 'number' ? 'Per photo follow up' : 'Follow up',
+          text: q.question,
+          options: Array.isArray(q.options) && q.options.length > 0 ? q.options : ['Yes', 'No']
+        }));
+      }
+      throw new Error('no questions returned');
+    } catch (e) {
+      return FALLBACK_QUESTIONS;
+    }
+  }
+
+  async function startRealAnalysis() {
     aiReading.classList.remove('hidden');
     aiQuestions.classList.add('hidden');
+    const questions = await analyzePhotos(lastAnalyzedPhotos);
+    // Replace mockedQuestions contents in place so renderQuestions picks them up.
+    mockedQuestions.length = 0;
+    questions.forEach(q => mockedQuestions.push(q));
     setTimeout(() => {
       aiReading.classList.add('hidden');
       renderQuestions();
       revealRestOfForm();
-    }, 1700);
+    }, 200);
   }
 
   function handleFiles(files) {
@@ -1032,7 +1102,8 @@
       thumb.style.backgroundImage = 'url(' + url + ')';
       uploadThumbs.appendChild(thumb);
     });
-    startMockedAnalysis();
+    lastAnalyzedPhotos = Array.from(files).slice(0, 6);
+    startRealAnalysis();
   }
 
   inspoInput.addEventListener('change', (e) => handleFiles(e.target.files));
@@ -1046,10 +1117,97 @@
   }));
   uploadTile.addEventListener('drop', (e) => handleFiles(e.dataTransfer.files));
 
-  document.getElementById('consult-form').addEventListener('submit', (e) => {
+  // Real consult submission (Piece 3). POSTs all text fields and the most
+  // recent photo batch to /api/public/consult. On success, swaps the form
+  // for a confirmation. On failure, falls through to a mailto so the lead
+  // never silently disappears.
+  document.getElementById('consult-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    alert("Preview only. In the build, this submits to your inbox via Opélle's Metis pipeline.");
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+    }
+
+    // Build multipart payload from form fields.
+    const formData = new FormData();
+    const fields = ['name', 'contact', 'hair_story', 'goals', 'budget', 'timing'];
+    fields.forEach(f => {
+      const input = document.querySelector('[name="' + f + '"]:checked, [name="' + f + '"]');
+      if (input) formData.append(f, input.value || '');
+    });
+
+    // Referrer: prefer URL param captured into sessionStorage, fallback to
+    // whatever the user typed in the "who referred you" text field.
+    const urlReferrer = (function () {
+      try { return sessionStorage.getItem('belle_referral_code') || ''; } catch (e) { return ''; }
+    })();
+    const typedReferrer = document.querySelector('[name="referrer"]')?.value || '';
+    formData.append('referrer', urlReferrer || typedReferrer);
+
+    // Photos from the last analyzed batch.
+    lastAnalyzedPhotos.forEach((file, i) => {
+      formData.append('photo' + i, file);
+    });
+
+    let success = false;
+    try {
+      const res = await fetch(OPELLE_CONSULT_URL, {
+        method: 'POST',
+        body: formData,
+        mode: 'cors',
+        credentials: 'omit'
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.success) success = true;
+      }
+    } catch (err) {
+      // Network failure, fall through to mailto.
+    }
+
+    if (success) {
+      showConfirmationState();
+      return;
+    }
+
+    // Graceful fallback: open mailto so submission never silently fails.
+    // NOTE: change this address if Belle wants leads routed elsewhere.
+    const name = formData.get('name') || '';
+    const contact = formData.get('contact') || '';
+    const hair = formData.get('hair_story') || '';
+    const goals = formData.get('goals') || '';
+    const body = encodeURIComponent(
+      'Name: ' + name + '\n' +
+      'Contact: ' + contact + '\n\n' +
+      'Hair: ' + hair + '\n\n' +
+      'Goals: ' + goals
+    );
+    const subject = encodeURIComponent('Consult request from belle.co.beauty');
+    window.location.href = 'mailto:hello@belle.co.beauty?subject=' + subject + '&body=' + body;
+
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    }
   });
+
+  function showConfirmationState() {
+    const form = document.getElementById('consult-form');
+    if (!form) return;
+    const confirm = document.createElement('div');
+    confirm.className = 'space-y-6';
+    const heading = document.createElement('h3');
+    heading.className = 'font-display text-3xl sm:text-4xl';
+    heading.textContent = 'Thank you. I will reach out within 48 hours.';
+    const body = document.createElement('p');
+    body.className = 'text-mute text-[16px] leading-[1.7] max-w-md';
+    body.textContent = 'Your consult landed in my inbox. I will look at your photos and notes carefully and follow up by phone or email at the contact you gave me.';
+    confirm.appendChild(heading);
+    confirm.appendChild(body);
+    form.parentNode.replaceChild(confirm, form);
+  }
 
   // Tab clicks: scroll programmatically (bypass anchor navigation,
   // which can be blocked inside iframes/preview panels)
